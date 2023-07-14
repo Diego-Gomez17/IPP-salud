@@ -1,0 +1,127 @@
+<h1>Sistema de Control de enfermedades</h1>
+<div class="container">
+    <div class="notificaciones">
+        {% for notificacion in notificaciones %}
+        <a href="{% url 'agregar_paciente' %}">Agregar Paciente</a>
+        <div class="notificacion">
+            <h3>Notificación {{ forloop.counter }}</h3>
+            <p><strong>ID Paciente:</strong> {{ notificacion.id_paciente }}</p>
+            <p><strong>Enfermedad:</strong> {{ notificacion.enfermedad }}</p>
+            <p><strong>Etapa:</strong> {{ notificacion.etapa }}</p>
+            <p><strong>Síntoma:</strong> {{ notificacion.sintoma }}</p>
+            <p><strong>Nombre:</strong> {{ notificacion.nombre }}</p>
+            <p><strong>Edad:</strong> {{ notificacion.edad }}</p>
+            <p><strong>Género:</strong> {{ notificacion.genero }}</p>
+            <p><strong>Región:</strong> {{ notificacion.region }}</p>
+            <p><strong>Comuna:</strong> {{ notificacion.comuna }}</p>
+            <p><strong>Fecha de Notificación:</strong> {{ notificacion.fecha_notificacion }}</p>
+            <p><strong>Fecha de Alta:</strong> {{ notificacion.fecha_alta }}</p>
+            <p><strong>Correo del Paciente:</strong> {{ notificacion.correo_paciente }}</p>
+            <p><strong>Número del Paciente:</strong> {{ notificacion.numero_paciente }}</p>
+            <p><strong>Dirección del Paciente:</strong> {{ notificacion.direccion_paciente }}</p>
+            <p><strong>Correo de Tercera Persona:</strong> {{ notificacion.correo_tercera_persona }}</p>
+            <p><strong>Número de Tercera Persona:</strong> {{ notificacion.numero_tercera_persona }}</p>
+            <p><strong>Dirección de Tercera Persona:</strong> {{ notificacion.direccion_tercera_persona }}</p>
+        </div>
+        {% endfor %}
+    </div>
+    <br>
+    <div class="enfermedades">
+        <a href="{% url 'agregar_enfermedad' %}">Agregar Enfermedad</a>
+        {% for enfermedad in enfermedades %}
+        <div class="enfermedad">
+            <p><b>Nombre Enfermedad:</b> {{ enfermedad.nombre }} <a
+                    href="{% url 'agregar_etapa' enfermedad.id_enfermedad %}">Agregar Etapa</a>
+            </p>
+            <p><b>Clasificacion:</b> {{ enfermedad.clasificacion_notificacion }}</p>
+            <ul>
+                {% for etapa in etapas %}
+                {% if etapa.enfermedad == enfermedad %}
+                <li><b>Etapa:</b> {{ etapa.nombre }} - {{ etapa.duracion }} <a
+                        href="{% url 'agregar_sintoma' enfermedad.id_enfermedad etapa.id_etapa %}">Agregar Síntoma</a>
+                    <ul>
+                        {% for sintoma in sintomas %}
+                        {% if sintoma.etapa == etapa %}
+                        <li><b>Síntoma:</b> {{ sintoma.sintoma_detalle }}</li>
+                        <ul>
+                            <li><b>Cuidados:</b> {{ sintoma.cuidados }}</li>
+                            <li><b>Consideraciones:</b> {{ sintoma.consideraciones }}</li>
+                            <li><b>Obligatoriedad:</b> {% if sintoma.obligatoriedad == null %}{{' '}}{% else %}{{
+                                sintoma.obligatoriedad }}{% endif %}</li>
+                        </ul>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                </li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+    * {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .container {
+        display: flex;
+    }
+
+    .notificaciones {
+        flex: 1;
+        margin-right: 20px;
+    }
+
+    .enfermedades {
+        flex: 1;
+    }
+    /* notificaciones*/
+    .notificacion {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    .notificacion h3 {
+        margin-top: 0;
+    }
+
+    .notificacion p {
+        margin-bottom: 5px;
+    }
+
+    .notificacion strong {
+        font-weight: bold;
+    }
+
+
+    /* enfermedades */
+    .enfermedades {
+        border: 1px solid black;
+        padding: 10px;
+        margin: 10px;
+    }
+
+    .enfermedad {
+        border: 1px solid black;
+        margin: 15px;
+        padding: 10px;
+        background-color: #f0f0f0;
+    }
+
+    .enfermedad p {
+        margin: 5px 0;
+    }
+
+    .enfermedad ul {
+        margin-top: 10px;
+        padding-left: 20px;
+    }
+
+    .enfermedad li {
+        margin-bottom: 5px;
+    }
+</style>

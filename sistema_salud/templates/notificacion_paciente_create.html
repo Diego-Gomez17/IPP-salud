@@ -1,0 +1,141 @@
+<div class="form-container">
+  <h1>Agregar Notificación de Paciente</h1>
+
+  <form method="post">
+    {% csrf_token %} {{ form.non_field_errors }}
+
+    <div class="form-group">
+      <label for="id_enfermedad">Enfermedad:</label>
+      {{ form.enfermedad }} {{ form.enfermedad.errors }}
+    </div>
+
+    <div class="form-group">
+      <label for="id_etapa">Etapa:</label>
+      {{ form.etapa }} {{ form.etapa.errors }}
+    </div>
+
+    <div class="form-group">
+      <label for="id_sintoma">Síntoma:</label>
+      {{ form.sintoma }} {{ form.sintoma.errors }}
+    </div>
+
+    <div class="form-group">
+      <label for="{{ form.nombre.id_for_label }}">Nombre:</label>
+      {{ form.nombre }} {{ form.nombre.errors }}
+    </div>
+
+    <div class="form-group">
+      <label for="{{ form.edad.id_for_label }}">Edad:</label>
+      {{ form.edad }} {{ form.edad.errors }}
+    </div>
+
+    <div class="form-group">
+      <label for="{{ form.genero.id_for_label }}">Género:</label>
+      {{ form.genero }} {{ form.genero.errors }}
+    </div>
+
+    <div class="form-group">
+      <label for="{{ form.region.id_for_label }}">Región:</label>
+      {{ form.region }} {{ form.region.errors }}
+    </div>
+
+    <div class="form-group">
+      <label for="{{ form.comuna.id_for_label }}">Comuna:</label>
+      {{ form.comuna }} {{ form.comuna.errors }}
+    </div>
+
+    <div class="form-group">
+      <label for="{{ form.fecha_notificacion.id_for_label }}"
+        >Fecha de Notificación:</label
+      >
+      {{ form.fecha_notificacion }} {{ form.fecha_notificacion.errors }}
+    </div>
+
+    <div class="form-group">
+      <label for="{{ form.fecha_alta.id_for_label }}">Fecha de Alta:</label>
+      {{ form.fecha_alta }} {{ form.fecha_alta.errors }}
+    </div>
+
+    <div class="form-group">
+      <label for="{{ form.correo_paciente.id_for_label }}"
+        >Correo del Paciente:</label
+      >
+      {{ form.correo_paciente }} {{ form.correo_paciente.errors }}
+    </div>
+
+    <div class="form-group">
+      <label for="{{ form.numero_paciente.id_for_label }}"
+        >Número del Paciente:</label
+      >
+      {{ form.numero_paciente }} {{ form.numero_paciente.errors }}
+    </div>
+
+    <div class="form-group">
+      <label for="{{ form.direccion_paciente.id_for_label }}"
+        >Dirección del Paciente:</label
+      >
+      {{ form.direccion_paciente }} {{ form.direccion_paciente.errors }}
+    </div>
+
+    <div class="form-group">
+      <label for="{{ form.correo_tercera_persona.id_for_label }}"
+        >Correo de Tercera Persona:</label
+      >
+      {{ form.correo_tercera_persona }} {{ form.correo_tercera_persona.errors }}
+    </div>
+
+    <div class="form-group">
+      <label for="{{ form.numero_tercera_persona.id_for_label }}"
+        >Número de Tercera Persona:</label
+      >
+      {{ form.numero_tercera_persona }} {{ form.numero_tercera_persona.errors }}
+    </div>
+
+    <div class="form-group">
+      <label for="{{ form.direccion_tercera_persona.id_for_label }}">Dirección de Tercera Persona:</label>
+      {{ form.direccion_tercera_persona }} {{form.direccion_tercera_persona.errors }}
+    </div>
+
+    <button type="submit" class="btn-save">Guardar</button>
+  </form>
+</div>
+<style>
+  .form-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f8f8f8;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  textarea,
+  select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+  }
+
+  .btn-save {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .btn-save:hover {
+    background-color: #45a049;
+  }
+</style>
